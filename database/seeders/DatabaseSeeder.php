@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()->count(10)->create();
-        Contact::factory()->count(50)->create();
+        Contact::factory()->count(20)->create();
         $this->call([
             CategorySeeder::class,
             BrandSeeder::class,
             AttributeValueSeeder::class,
         ]);
-//        Product::factory()->count(1000)->create();
+        Product::factory()->count(500)->create();
     }
 }

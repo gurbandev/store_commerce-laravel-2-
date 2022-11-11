@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +21,95 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::controller(RegisteredUserController::class)
+    ->middleware('guest')
+    ->group(function () {
+        Route::get('register', 'create')->name('register');
+        Route::post('register', 'store');
+    });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::controller(AuthenticatedSessionController::class)
+    ->middleware('guest')
+    ->group(function () {
+        Route::get('login', 'create')->name('login');
+        Route::post('login', 'store');
+    });
 
-require __DIR__.'/auth.php';
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')->name('logout');
+
+Route::controller(HomeController::class)
+    ->group(function () {
+        Route::get('', 'index')->name('home');
+        Route::get('/locale/{locale}', 'locale')->name('language')->where('locale', '[a-z]+');;
+    });
+
+Route::controller(ProductController::class)
+    ->prefix('/products')
+    ->name('products.')
+    ->group(function () {
+        Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
+        Route::middleware('auth')
+            ->prefix('/admin')
+            ->group(function () {
+                Route::get('/create', 'create')->name('create');
+                Route::post('', 'store')->name('store');
+                Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
+                Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
+                Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
+            });
+    });
+
+Route::controller(CategoryController::class)
+    ->prefix('/categories')
+    ->name('categories.')
+    ->group(function () {
+        Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
+        Route::middleware('auth')
+            ->prefix('/admin')
+            ->group(function () {
+                Route::get('/create', 'create')->name('create');
+                Route::post('', 'store')->name('store');
+                Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
+                Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
+                Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
+            });
+    });
+
+Route::controller(BrandController::class)
+    ->prefix('/brands')
+    ->name('brands.')
+    ->group(function () {
+        Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
+        Route::middleware('auth')
+            ->prefix('/admin')
+            ->group(function () {
+                Route::get('/create', 'create')->name('create');
+                Route::post('', 'store')->name('store');
+                Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
+                Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
+                Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
+            });
+    });
+
+Route::controller(SliderController::class)
+    ->middleware('auth')
+    ->prefix('/sliders/admin')
+    ->name('sliders.')
+    ->group(function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
+        Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
+        Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
+    });
+
+Route::controller(ContactController::class)
+    ->prefix('/contacts')
+    ->name('contacts.')
+    ->group(function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('', 'store')->name('store');
+        Route::delete('/admin/{id}', 'delete')->name('delete')
+            ->middleware('auth')->where('id', '[0-9-]+');
+    });
