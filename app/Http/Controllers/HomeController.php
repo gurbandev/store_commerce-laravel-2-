@@ -12,9 +12,9 @@ class HomeController extends Controller
     }
 
 
-    public function language($lang)
+    public function language($locale)
     {
-        switch ($lang) {
+        switch ($locale) {
             case 'tm':
                 session()->put('locale', 'tm');
                 return redirect()->back();

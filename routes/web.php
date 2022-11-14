@@ -41,7 +41,7 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::controller(HomeController::class)
     ->group(function () {
         Route::get('', 'index')->name('home');
-        Route::get('/locale/{locale}', 'locale')->name('language')->where('locale', '[a-z]+');;
+        Route::get('/locale/{locale}', 'language')->name('language')->where('locale', '[a-z]+');;
     });
 
 Route::controller(ProductController::class)
@@ -51,7 +51,7 @@ Route::controller(ProductController::class)
         Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
         // AUTH
         Route::middleware('auth')
-            ->prefix('/admin')
+            ->prefix('/auth')
             ->group(function () {
                 Route::get('/create', 'create')->name('create');
                 Route::post('', 'store')->name('store');
@@ -68,7 +68,7 @@ Route::controller(CategoryController::class)
         Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
         // AUTH
         Route::middleware('auth')
-            ->prefix('/admin')
+            ->prefix('/auth')
             ->group(function () {
                 Route::get('/create', 'create')->name('create');
                 Route::post('', 'store')->name('store');
@@ -85,7 +85,7 @@ Route::controller(BrandController::class)
         Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
         // AUTH
         Route::middleware('auth')
-            ->prefix('/admin')
+            ->prefix('/auth')
             ->group(function () {
                 Route::get('/create', 'create')->name('create');
                 Route::post('', 'store')->name('store');
@@ -98,7 +98,7 @@ Route::controller(BrandController::class)
 // AUTH
 Route::controller(SliderController::class)
     ->middleware('auth')
-    ->prefix('/sliders/admin')
+    ->prefix('/sliders/auth')
     ->name('sliders.')
     ->group(function () {
         Route::get('/create', 'create')->name('create');
@@ -115,6 +115,6 @@ Route::controller(ContactController::class)
         Route::get('/create', 'create')->name('create');
         Route::post('', 'store')->name('store');
         // AUTH
-        Route::delete('/admin/{id}', 'delete')->name('delete')
+        Route::delete('/auth/{id}', 'delete')->name('delete')
             ->middleware('auth')->where('id', '[0-9-]+');
     });
