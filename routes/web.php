@@ -49,6 +49,7 @@ Route::controller(ProductController::class)
     ->name('products.')
     ->group(function () {
         Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
+        // AUTH
         Route::middleware('auth')
             ->prefix('/admin')
             ->group(function () {
@@ -65,6 +66,7 @@ Route::controller(CategoryController::class)
     ->name('categories.')
     ->group(function () {
         Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
+        // AUTH
         Route::middleware('auth')
             ->prefix('/admin')
             ->group(function () {
@@ -81,6 +83,7 @@ Route::controller(BrandController::class)
     ->name('brands.')
     ->group(function () {
         Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
+        // AUTH
         Route::middleware('auth')
             ->prefix('/admin')
             ->group(function () {
@@ -92,6 +95,7 @@ Route::controller(BrandController::class)
             });
     });
 
+// AUTH
 Route::controller(SliderController::class)
     ->middleware('auth')
     ->prefix('/sliders/admin')
@@ -110,6 +114,7 @@ Route::controller(ContactController::class)
     ->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('', 'store')->name('store');
+        // AUTH
         Route::delete('/admin/{id}', 'delete')->name('delete')
             ->middleware('auth')->where('id', '[0-9-]+');
     });
