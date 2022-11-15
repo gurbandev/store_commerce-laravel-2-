@@ -3,9 +3,9 @@
     @lang('app.login')
 @endsection
 @section('content')
-    <div class="container-lg py-3">
+    <div class="container-xl py-3">
         <div class="row justify-content-center">
-            <div class="col-10 col-sm-9 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+            <div class="col-8 col-sm-6 col-md-4 col-lg-3">
                 <div class="h3 text-center mb-3">
                     @lang('app.login')
                 </div>
@@ -20,7 +20,7 @@
                         </label>
                         <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" id="username" value="{{ old('username') }}" required autofocus>
                         @error('username')
-                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -31,7 +31,7 @@
                         </label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" value="{{ old('password') }}" required>
                         @error('password')
-                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -48,7 +48,9 @@
                 </form>
 
                 <div class="text-center mt-3">
-                    <a href="{{ route('register') }}">@lang('app.createNewAccount')</a>
+                    <a href="{{ route('register') }}" class="text-decoration-none">
+                        @lang('app.createNewAccount')
+                    </a>
                 </div>
             </div>
         </div>

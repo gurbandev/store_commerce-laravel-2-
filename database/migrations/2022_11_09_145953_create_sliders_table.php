@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('image_tm');
             $table->string('image_en')->nullable();
+            $table->unsignedInteger('sort_order')->default(1);
         });
     }
 

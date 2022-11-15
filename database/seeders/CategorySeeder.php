@@ -16,19 +16,21 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $objs = [
-            ['Monitorlar', 'Monitors'],
-            ['Klawituralar', 'Keyboards'],
-            ['Mobil telefonlar', 'Mobiles'],
-            ['Syçanjyklar', 'Mouses'],
-            ['Printerler', 'Printers'],
-            ['Skanerlar', 'Scaners'],
-            ['Oyun laptoplar', 'Gaming Laptop'],
-            ['Notbuklar', 'Notebook'],
+            ['Monitorlar', 'Monitors', 'Monitor', 'Monitor'],
+            ['Klawiaturalar', 'Keyboards', 'Klawiatura', 'Keyboard'],
+            ['Mobil Telefonlar', 'Mobiles', 'Mobil telefon', 'Mobile'],
+            ['Syçanjyklar', 'Mouses', 'Syçanjyk', 'Mouse'],
+            ['Printerler', 'Printers', 'Printer', 'Printer'],
+            ['Skanerlar', 'Scaners', 'Skaner', 'Scaner'],
+            ['Oyun Noutbuklar', 'Gaming Notebooks', 'Oyun noutbuk', 'Gaming notebook'],
+            ['Noutbuklar', 'Notebooks', 'Noutbuk', 'Notebook'],
         ];
         foreach ($objs as $obj) {
             Category::create([
                 'name_tm' => $obj[0],
                 'name_en' => $obj[1],
+                'product_tm' => $obj[2],
+                'product_en' => $obj[3],
                 'slug' => str($obj[0])->slug(),
             ]);
         }

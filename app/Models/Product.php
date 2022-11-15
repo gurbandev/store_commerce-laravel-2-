@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,5 +39,37 @@ class Product extends Model
     public function values()
     {
         return $this->belongsToMany(AttributeValue::class);
+    }
+
+
+    public function isDiscount()
+    {
+        if ($this->discount_percent > 0 and $this->discount_start <= Carbon::now()->toDateTimeString() and $this->discount_end >= Carbon::now()->toDateTimeString()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function getPrice()
+    {
+        return round($this->price * (1 - $this->discount_percent / 100), 1);
+    }
+
+
+    public function getName()
+    {
+        $locale = app()->getLocale();
+        switch ($locale) {
+            case 'tm':
+                return $this->name_tm;
+                break;
+            case 'en':
+                return $this->name_en ?: $this->name_tm;
+                break;
+            default:
+                return $this->name_tm;
+        }
     }
 }

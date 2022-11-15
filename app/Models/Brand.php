@@ -19,4 +19,10 @@ class Brand extends Model
         return $this->hasMany(Product::class)
             ->orderBy('id', 'desc');
     }
+
+
+    public function getName()
+    {
+        return $this->name;
+    }
 }

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-black" aria-label="navbar">
-    <div class="container-lg">
+<nav class="navbar navbar-expand-md navbar-dark bg-black" aria-label="navbar">
+    <div class="container-xl">
         <a class="navbar-brand" href="{{ route('home') }}"><i class="bi-cart4"></i> @lang('app.app-name')</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

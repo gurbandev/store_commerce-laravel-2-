@@ -72,27 +72,17 @@ Route::controller(CategoryController::class)
             ->group(function () {
                 Route::get('/create', 'create')->name('create');
                 Route::post('', 'store')->name('store');
-                Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
-                Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
-                Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
             });
     });
 
+// AUTH
 Route::controller(BrandController::class)
-    ->prefix('/brands')
+    ->middleware('auth')
+    ->prefix('/brands/auth')
     ->name('brands.')
     ->group(function () {
-        Route::get('/{slug}', 'show')->name('show')->where('slug', '[A-Za-z0-9-]+');
-        // AUTH
-        Route::middleware('auth')
-            ->prefix('/auth')
-            ->group(function () {
-                Route::get('/create', 'create')->name('create');
-                Route::post('', 'store')->name('store');
-                Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
-                Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
-                Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
-            });
+        Route::get('/create', 'create')->name('create');
+        Route::post('', 'store')->name('store');
     });
 
 // AUTH
@@ -103,9 +93,6 @@ Route::controller(SliderController::class)
     ->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('', 'store')->name('store');
-        Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
-        Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
-        Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
     });
 
 Route::controller(ContactController::class)
@@ -114,7 +101,4 @@ Route::controller(ContactController::class)
     ->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('', 'store')->name('store');
-        // AUTH
-        Route::delete('/auth/{id}', 'delete')->name('delete')
-            ->middleware('auth')->where('id', '[0-9-]+');
     });

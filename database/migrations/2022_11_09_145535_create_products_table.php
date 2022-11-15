@@ -32,7 +32,9 @@ return new class extends Migration
             $table->dateTime('discount_end')->useCurrent();
             $table->boolean('credit')->default(0);
             $table->unsignedInteger('viewed')->default(0);
+            $table->unsignedInteger('sold')->default(0);
             $table->unsignedInteger('favorites')->default(0);
+            $table->unsignedInteger('random')->default(0);
             $table->timestamps();
         });
     }

@@ -20,8 +20,8 @@ class ProductFactory extends Factory
     {
         $category = DB::table('categories')->inRandomOrder()->first();
         $brand = DB::table('brands')->inRandomOrder()->first();
-        $nameTm = $brand->name . ' ' . $category->name_tm . ' ' . fake()->streetName();
-        $nameEn = $brand->name . ' ' . $category->name_en . ' ' . fake()->streetName();
+        $nameTm = $brand->name . ' ' . $category->product_tm . ' ' . fake()->streetName();
+        $nameEn = $brand->name . ' ' . $category->product_en . ' ' . fake()->streetName();
         $hasDiscount = fake()->boolean(20);
         return [
             'category_id' => $category->id,
@@ -54,8 +54,10 @@ class ProductFactory extends Factory
                     ->startOfMonth()
                     ->toDateTimeString(),
             'credit' => fake()->boolean(10),
-            'viewed' => rand(0, 100),
+            'viewed' => rand(20, 100),
+            'sold' => rand(5, 10),
             'favorites' => rand(0, 30),
+            'random' => rand(0, 999),
         ];
     }
 }
