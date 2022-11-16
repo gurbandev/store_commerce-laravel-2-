@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    @lang('category') - {{ $category->getName() }}
+    @lang('category') - {{ $category->getName() }} - @lang('app.app-name')
 @endsection
 @section('content')
     <div class="container-xl py-3">

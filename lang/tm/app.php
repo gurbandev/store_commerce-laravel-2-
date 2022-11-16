@@ -48,7 +48,9 @@ return [
     'viewed' => 'Görüldi',
     'favorites' => 'Halananlar',
     'sortOrder' => 'Tertibi',
+    'phone' => 'Telefon',
     'message' => 'Hat',
+    'showOnHomePage' => 'Baş sahypada görkez',
 
     'receivedAt' => 'Gelen wagty',
     'createdAt' => 'Döredilen wagty',

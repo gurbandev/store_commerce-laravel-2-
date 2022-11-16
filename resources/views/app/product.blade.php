@@ -14,16 +14,16 @@
                 @if($product->isDiscount())
                     <div class="text-secondary">
                         {{ number_format($product->price, 2, '.', ' ') }}
-                        <small>tmt</small>
+                        <small>TMT</small>
                     </div>
                     <div class="fs-5 fw-semibold text-danger">
                         {{ number_format($product->getPrice(), 2, '.', ' ') }}
-                        <small>tmt</small>
+                        <small>TMT</small>
                     </div>
                 @else
                     <div class="fs-5 fw-semibold text-primary">
                         {{ number_format($product->price, 2, '.', ' ') }}
-                        <small>tmt</small>
+                        <small>TMT</small>
                     </div>
                 @endif
             </div>

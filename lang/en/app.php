@@ -48,7 +48,9 @@ return [
     'viewed' => 'Viewed',
     'favorites' => 'Favorites',
     'sortOrder' => 'Sort order',
+    'phone' => 'Phone',
     'message' => 'Message',
+    'showOnHomePage' => 'Show on home page',
 
     'receivedAt' => 'Received at',
     'createdAt' => 'Created at',

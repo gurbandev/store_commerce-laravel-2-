@@ -22,7 +22,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contacts.create') }}">
-                        <i class="bi-envelope"></i> @lang('app.contact')
+                        <i class="bi-envelope-plus"></i> @lang('app.contact')
                     </a>
                 </li>
                 @auth
@@ -95,3 +95,6 @@
         </div>
     </div>
 </nav>
+@auth
+
+@endauth
