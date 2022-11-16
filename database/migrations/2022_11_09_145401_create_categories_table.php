@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('product_tm');
             $table->string('product_en')->nullable();
             $table->string('slug')->unique();
-            $table->string('image')->nullable();
             $table->boolean('home')->default(0);
             $table->unsignedInteger('sort_order')->default(1);
         });

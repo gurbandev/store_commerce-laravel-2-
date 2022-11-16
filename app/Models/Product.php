@@ -52,9 +52,19 @@ class Product extends Model
     }
 
 
+    public function getDiscountPercent()
+    {
+        if ($this->isDiscount()) {
+            return $this->discount_percent;
+        } else {
+            return 0;
+        }
+    }
+
+
     public function getPrice()
     {
-        return round($this->price * (1 - $this->discount_percent / 100), 1);
+        return round($this->price * (1 - $this->getDiscountPercent() / 100), 1);
     }
 
 
