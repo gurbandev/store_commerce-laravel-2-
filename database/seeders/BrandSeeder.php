@@ -16,18 +16,18 @@ class BrandSeeder extends Seeder
     public function run()
     {
         $objs = [
-            'Apple',
-            'Xiaomi',
-            'Samsung',
+            'ACER',
+            'APPLE',
+            'ASUS',
+            'DELL',
+            'FUJITSU',
             'HP',
-            'Asus',
-            'Sony',
-            'Blu',
-            'Acer',
-            'HTC',
-            'LG',
-            'Dell',
-            'Beko',
+            'LENOVO',
+            'MSI',
+            'SAMSUNG',
+            'SONY',
+            'TOSHIBA',
+            'XIAOMI',
         ];
         foreach ($objs as $obj) {
             Brand::create([

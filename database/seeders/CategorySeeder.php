@@ -17,13 +17,15 @@ class CategorySeeder extends Seeder
     {
         $objs = [
             ['Monitorlar', 'Monitors', 'Monitor', 'Monitor'],
+            ['Oyun Monitorlar', 'Gaming Monitors', 'Oyun monitor', 'Gaming monitor'],
             ['Klawiaturalar', 'Keyboards', 'Klawiatura', 'Keyboard'],
-            ['Mobil Telefonlar', 'Mobiles', 'Mobil telefon', 'Mobile'],
+            ['Oyun Klawiaturalar', 'Gaming Keyboards', 'Oyun klawiatura', 'Gaming keyboard'],
             ['Syçanjyklar', 'Mouses', 'Syçanjyk', 'Mouse'],
-            ['Printerler', 'Printers', 'Printer', 'Printer'],
-            ['Skanerlar', 'Scaners', 'Skaner', 'Scaner'],
-            ['Oyun Noutbuklar', 'Gaming Notebooks', 'Oyun noutbuk', 'Gaming notebook'],
+            ['Oyun Syçanjyklar', 'Gaming Mouses', 'Oyun syçanjyk', 'Gaming mouse'],
             ['Noutbuklar', 'Notebooks', 'Noutbuk', 'Notebook'],
+            ['Oyun Noutbuklar', 'Gaming Notebooks', 'Oyun noutbuk', 'Gaming notebook'],
+            ['Kompýuter Kreslolary', 'Computer Chairs', 'Kompýuter kreslo', 'Computer chair'],
+            ['Printerler', 'Printers', 'Printer', 'Printer'],
         ];
         foreach ($objs as $obj) {
             Category::create([

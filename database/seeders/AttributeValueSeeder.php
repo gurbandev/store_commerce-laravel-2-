@@ -45,6 +45,14 @@ class AttributeValueSeeder extends Seeder
                 ['name_tm' => '512 GB', 'name_en' => null],
                 ['name_tm' => '1 TB', 'name_en' => null],
             ]],
+            ['name_tm' => 'Diagonal', 'name_en' => 'Diagonal', 'values' => [
+                ['name_tm' => '13.3"', 'name_en' => null],
+                ['name_tm' => '14"', 'name_en' => null],
+                ['name_tm' => '15.6"', 'name_en' => null],
+                ['name_tm' => '17.3"', 'name_en' => null],
+                ['name_tm' => '19"', 'name_en' => null],
+                ['name_tm' => '20"', 'name_en' => null],
+            ]],
         ];
         for ($i = 0; $i < count($objs); $i++) {
             $attribute = Attribute::create([
