@@ -4,8 +4,8 @@
             <div class="fs-4 fw-semibold">
                 {{ $categoryProduct['category']->getName() }}
             </div>
-            <a class="fs-4 link-primary" href="{{ route('categories.show', $categoryProduct['category']->slug) }}">
-                <i class="bi-arrow-right-square-fill "></i>
+            <a class="fs-4 link-secondary" href="{{ route('categories.show', $categoryProduct['category']->slug) }}">
+                <i class="bi-arrow-right-circle-fill"></i>
             </a>
         </div>
         <div class="splide py-3" role="group" id="splide-category-{{ $categoryProduct['category']->id }}">

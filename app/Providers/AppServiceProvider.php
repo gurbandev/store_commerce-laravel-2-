@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
         Model::preventLazyLoading(!app()->isProduction());
 
         View::composer('app.nav', function ($view) {
-            $categories = Category::orderBy('slug')
+            $categories = Category::orderBy('sort_order')
+                ->orderBy('slug')
                 ->get();
 
             $view->with([

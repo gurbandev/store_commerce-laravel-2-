@@ -16,7 +16,9 @@ class HomeController extends Controller
             ->get();
 
         $categoryProducts = [];
-        $categories = Category::orderBy('slug')
+        $categories = Category::where('home', 1)
+            ->orderBy('sort_order')
+            ->orderBy('slug')
             ->get();
 
         foreach ($categories as $category) {
