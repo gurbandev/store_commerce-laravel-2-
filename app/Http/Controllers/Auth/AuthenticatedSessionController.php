@@ -24,7 +24,7 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->intended(RouteServiceProvider::HOME)
             ->with([
-                'success' => 'Successfully logged in!',
+                'success' => 'Welcome ' . auth()->user()->name . '! Successfully logged in!',
             ]);
     }
 
