@@ -8,7 +8,7 @@
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 <div class="d-flex">
                     <img src="{{  $product->image ? Storage::url('products/' . $product->image) : asset('img/product.jpg') }}"
-                         alt="{{ $product->getFullName() }}" class="img-fluid rounded">
+                         alt="{{ $product->getFullName() }}" class="img-fluid border rounded">
                     <div class="position-absolute">
                         @if($product->isDiscount())
                             <div class="m-2">
