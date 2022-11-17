@@ -38,7 +38,7 @@ class CategoryController extends Controller
             'name_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')],
             'product_tm' => ['required', 'string', 'max:255', Rule::unique('categories')],
             'product_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')],
-            'home' => ['required', 'boolean'],
+            'home' => ['nullable', 'boolean'],
             'sort_order' => ['required', 'integer', 'min:1'],
         ]);
 
@@ -47,7 +47,7 @@ class CategoryController extends Controller
             'name_en' => $request->name_en ?: null,
             'product_tm' => $request->product_tm,
             'product_en' => $request->product_en ?: null,
-            'home' => $request->home,
+            'home' => $request->home ? 1 : 0,
             'sort_order' => $request->sort_order,
         ]);
 
@@ -77,7 +77,7 @@ class CategoryController extends Controller
             'name_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')->ignore($obj->id)],
             'product_tm' => ['required', 'string', 'max:255', Rule::unique('categories')->ignore($obj->id)],
             'product_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')->ignore($obj->id)],
-            'home' => ['required', 'boolean'],
+            'home' => ['nullable', 'boolean'],
             'sort_order' => ['required', 'integer', 'min:1'],
         ]);
 
@@ -85,7 +85,7 @@ class CategoryController extends Controller
         $obj->name_en = $request->name_en ?: null;
         $obj->product_tm = $request->product_tm;
         $obj->product_en = $request->product_en ?: null;
-        $obj->home = $request->home;
+        $obj->home = $request->home ? 1 : 0;
         $obj->sort_order = $request->sort_order;
         $obj->update();
 
