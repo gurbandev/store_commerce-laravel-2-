@@ -20,14 +20,18 @@ class ProductFactory extends Factory
     {
         $category = DB::table('categories')->inRandomOrder()->first();
         $brand = DB::table('brands')->inRandomOrder()->first();
-        $nameTm = $brand->name . ' ' . $category->product_tm . ' ' . fake()->streetName();
-        $nameEn = $brand->name . ' ' . $category->product_en . ' ' . fake()->streetName();
+        $nameTm = fake()->streetName();
+        $nameEn = fake()->streetName();
+        $fullNameTm = $brand->name . ' ' . $category->product_tm . ' ' . $nameTm;
+        $fullNameEn = $brand->name . ' ' . $category->product_en . ' ' . $nameEn;
         $hasDiscount = fake()->boolean(20);
         return [
             'category_id' => $category->id,
             'brand_id' => $brand->id,
             'name_tm' => $nameTm,
             'name_en' => $nameEn,
+            'full_name_tm' => $fullNameTm,
+            'full_name_en' => $fullNameEn,
             'barcode' => fake()->unique()->isbn13(),
             'description' => fake()->text(rand(300, 500)),
             'price' => fake()->randomFloat($nbMaxDecimals = 1, $min = 100, $max = 1000),

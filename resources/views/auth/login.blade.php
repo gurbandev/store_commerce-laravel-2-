@@ -6,7 +6,7 @@
     <div class="container-xl py-4">
         <div class="row justify-content-center">
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
-                <div class="h3 text-center mb-3">
+                <div class="fs-4 fw-semibold text-center mb-3">
                     @lang('app.login')
                 </div>
 

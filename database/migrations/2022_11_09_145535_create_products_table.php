@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreign('brand_id')->references('id')->on('brands')->cascadeOnDelete();
             $table->string('name_tm');
             $table->string('name_en')->nullable();
+            $table->string('full_name_tm');
+            $table->string('full_name_en')->nullable();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->string('barcode')->nullable();

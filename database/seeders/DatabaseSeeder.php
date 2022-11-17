@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Contact::factory()->count(10)->create();
         $this->call([
             UserSeeder::class,
-            AttributeValueSeeder::class,
             CategorySeeder::class,
             BrandSeeder::class,
+            AttributeValueSeeder::class,
         ]);
-        Product::factory()->count(100)->create();
+        Contact::factory()->count(10)->create();
+        Product::factory()->count(50)->create();
     }
 }

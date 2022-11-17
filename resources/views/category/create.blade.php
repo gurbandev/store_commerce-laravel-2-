@@ -6,7 +6,7 @@
     <div class="container-xl py-4">
         <div class="row justify-content-center">
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
-                <div class="h3 text-center mb-3">
+                <div class="fs-4 fw-semibold text-center mb-3">
                     @lang('app.category')
                 </div>
 
@@ -15,7 +15,7 @@
 
                     <div class="mb-3">
                         <label for="name_tm" class="form-label fw-semibold">
-                            <span class="text-primary">TM</span> @lang('app.name')
+                            <span class="text-danger">TM</span> @lang('app.name')
                             <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control @error('name_tm') is-invalid @enderror" name="name_tm" id="name_tm"  value="{{ old('name_tm') }}" required autofocus>
@@ -26,7 +26,7 @@
 
                     <div class="mb-3">
                         <label for="name_en" class="form-label fw-semibold">
-                            <span class="text-primary">EN</span> @lang('app.name')
+                            <span class="text-danger">EN</span> @lang('app.name')
                         </label>
                         <input type="text" class="form-control @error('name_en') is-invalid @enderror" name="name_en" id="name_en" value="{{ old('name_en') }}">
                         @error('name_en')
@@ -36,7 +36,7 @@
 
                     <div class="mb-3">
                         <label for="product_tm" class="form-label fw-semibold">
-                            <span class="text-primary">TM</span> @lang('app.product')
+                            <span class="text-danger">TM</span> @lang('app.product')
                             <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control @error('product_tm') is-invalid @enderror" name="product_tm" id="product_tm"  value="{{ old('product_tm') }}" required>
@@ -47,7 +47,7 @@
 
                     <div class="mb-3">
                         <label for="product_en" class="form-label fw-semibold">
-                            <span class="text-primary">EN</span> @lang('app.product')
+                            <span class="text-danger">EN</span> @lang('app.product')
                         </label>
                         <input type="text" class="form-control @error('product_en') is-invalid @enderror" name="product_en" id="product_en" value="{{ old('product_en') }}">
                         @error('product_en')

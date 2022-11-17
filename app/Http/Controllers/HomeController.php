@@ -19,8 +19,9 @@ class HomeController extends Controller
         foreach ($categories as $category) {
             $categoryProducts[] = [
                 'category' => $category,
-                'products' => Product::orderBy('random')
-                    ->take(5)
+                'products' => Product::where('category_id', $category->id)
+                    ->inRandomOrder()
+                    ->take(6)
                     ->get(),
             ];
         }

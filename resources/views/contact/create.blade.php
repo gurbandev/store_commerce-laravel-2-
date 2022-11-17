@@ -6,7 +6,7 @@
     <div class="container-xl py-4">
         <div class="row justify-content-center">
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
-                <div class="h3 text-center mb-3">
+                <div class="fs-4 fw-semibold text-center mb-3">
                     @lang('app.contact')
                 </div>
 
@@ -30,7 +30,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
-                            <span class="input-group-text">+993</span>
+                            <span class="input-group-text fw-semibold">+993</span>
                             <input type="number" min="60000000" max="65999999" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required>
                         </div>
                         @error('phone')
@@ -43,7 +43,7 @@
                             @lang('app.email')
                         </label>
                         <div class="input-group">
-                            <span class="input-group-text">@</span>
+                            <span class="input-group-text fw-semibold">@</span>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email">
                         </div>
                         @error('email')

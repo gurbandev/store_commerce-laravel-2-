@@ -6,7 +6,7 @@
     <div class="container-xl py-4">
         <div class="row justify-content-center">
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
-                <div class="h3 text-center mb-3">
+                <div class="fs-4 fw-semibold text-center mb-3">
                     @lang('app.product')
                 </div>
 
@@ -45,7 +45,7 @@
 
                     <div class="mb-3">
                         <label for="name_tm" class="form-label fw-semibold">
-                            <span class="text-primary">TM</span> @lang('app.name')
+                            <span class="text-danger">TM</span> @lang('app.name')
                             <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control @error('name_tm') is-invalid @enderror" name="name_tm" id="name_tm" value="{{ old('name_tm') }}" required>
@@ -56,7 +56,7 @@
 
                     <div class="mb-3">
                         <label for="name_en" class="form-label fw-semibold">
-                            <span class="text-primary">EN</span> @lang('app.name')
+                            <span class="text-danger">EN</span> @lang('app.name')
                         </label>
                         <input type="text" class="form-control @error('name_en') is-invalid @enderror" name="name_en" id="name_en" value="{{ old('name_en') }}">
                         @error('name_en')
@@ -94,7 +94,7 @@
                         </label>
                         <div class="input-group">
                             <input type="number" min="0" step="0.1" class="form-control @error('price') is-invalid @enderror" name="price" id="price" value="0" required>
-                            <span class="input-group-text">TMT</span>
+                            <span class="input-group-text fw-semibold">TMT</span>
                         </div>
                         @error('price')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>

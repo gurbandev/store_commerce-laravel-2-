@@ -1,10 +1,10 @@
 <div class="{{ $loop->even ? 'bg-light':'bg-white' }}">
     <div class="container-xl py-4">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="fs-4 fw-semibold">
+        <div class="fs-4 d-flex justify-content-between align-items-center">
+            <div class="fw-semibold">
                 {{ $categoryProduct['category']->getName() }}
             </div>
-            <a class="fs-4 link-secondary" href="{{ route('categories.show', $categoryProduct['category']->slug) }}">
+            <a href="{{ route('categories.show', $categoryProduct['category']->slug) }}" class="link-secondary">
                 <i class="bi-arrow-right-circle-fill"></i>
             </a>
         </div>
