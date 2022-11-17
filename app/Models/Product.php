@@ -24,6 +24,15 @@ class Product extends Model
     ];
 
 
+    protected static function booted()
+    {
+        static::saving(function ($obj) {
+            $obj->slug = str()->slug($obj->name_tm) . '-' . $obj->id;
+            $obj->credit = $obj->price >= 500 ? 1 : 0;
+        });
+    }
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);

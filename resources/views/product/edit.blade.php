@@ -10,7 +10,8 @@
                     @lang('app.product')
                 </div>
 
-                <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('products.update', $obj->id) }}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
 
                     <div class="mb-3">
@@ -20,7 +21,7 @@
                         </label>
                         <select class="form-select  @error('category') is-invalid @enderror" name="category" id="category" required autofocus>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->getName() }}</option>
+                                <option value="{{ $category->id }}" {{ $obj->category_id == $category->id ? 'selected':'' }}>{{ $category->getName() }}</option>
                             @endforeach
                         </select>
                         @error('category')
@@ -35,7 +36,7 @@
                         </label>
                         <select class="form-select  @error('brand') is-invalid @enderror" name="brand" id="brand" required>
                             @foreach($brands as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->getName() }}</option>
+                                <option value="{{ $brand->id }}" {{ $obj->brand_id == $brand->id ? 'selected':'' }}>{{ $brand->getName() }}</option>
                             @endforeach
                         </select>
                         @error('brand')
@@ -48,7 +49,7 @@
                             <span class="text-primary">TM</span> @lang('app.name')
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control @error('name_tm') is-invalid @enderror" name="name_tm" id="name_tm" value="{{ old('name_tm') }}" required>
+                        <input type="text" class="form-control @error('name_tm') is-invalid @enderror" name="name_tm" id="name_tm" value="{{ $obj->name_tm }}" required>
                         @error('name_tm')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -58,7 +59,7 @@
                         <label for="name_en" class="form-label fw-semibold">
                             <span class="text-primary">EN</span> @lang('app.name')
                         </label>
-                        <input type="text" class="form-control @error('name_en') is-invalid @enderror" name="name_en" id="name_en" value="{{ old('name_en') }}">
+                        <input type="text" class="form-control @error('name_en') is-invalid @enderror" name="name_en" id="name_en" value="{{ $obj->name_en }}">
                         @error('name_en')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -70,7 +71,7 @@
                         </label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi-upc-scan"></i></span>
-                            <input type="text" class="form-control @error('barcode') is-invalid @enderror" name="barcode" id="barcode" value="{{ old('barcode') }}">
+                            <input type="text" class="form-control @error('barcode') is-invalid @enderror" name="barcode" id="barcode" value="{{ $obj->barcode }}">
                         </div>
                         @error('barcode')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -81,7 +82,7 @@
                         <label for="description" class="form-label fw-semibold">
                             @lang('app.description')
                         </label>
-                        <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="5" maxlength="1000">{{ old('description') }}</textarea>
+                        <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="5" maxlength="1000">{{ $obj->description }}</textarea>
                         @error('description')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -93,7 +94,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
-                            <input type="number" min="0" step="0.1" class="form-control @error('price') is-invalid @enderror" name="price" id="price" value="0" required>
+                            <input type="number" min="0" step="0.1" class="form-control @error('price') is-invalid @enderror" name="price" id="price" value="{{ $obj->price }}" required>
                             <span class="input-group-text">TMT</span>
                         </div>
                         @error('price')
@@ -106,7 +107,7 @@
                             @lang('app.stock')
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="number" min="0" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" value="0" required>
+                        <input type="number" min="0" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" value="{{ $obj->stock }}" required>
                         @error('stock')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -123,7 +124,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">
-                        @lang('app.save')
+                        @lang('app.update')
                     </button>
                 </form>
             </div>

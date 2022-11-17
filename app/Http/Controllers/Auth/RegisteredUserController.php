@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME)
             ->with([
-                'success' => 'Register Success',
+                'success' => 'Successfully registered!',
             ]);
     }
 }

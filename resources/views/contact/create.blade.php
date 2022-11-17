@@ -3,7 +3,7 @@
     @lang('app.contact') - @lang('app.app-name')
 @endsection
 @section('content')
-    <div class="container-xl py-3">
+    <div class="container-xl py-4">
         <div class="row justify-content-center">
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 <div class="h3 text-center mb-3">

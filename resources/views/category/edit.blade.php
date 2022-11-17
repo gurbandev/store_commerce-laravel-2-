@@ -10,7 +10,8 @@
                     @lang('app.category')
                 </div>
 
-                <form action="{{ route('categories.store') }}" method="post">
+                <form action="{{ route('categories.update', $obj->id) }}" method="post">
+                    @method('PUT')
                     @csrf
 
                     <div class="mb-3">
@@ -18,7 +19,7 @@
                             <span class="text-primary">TM</span> @lang('app.name')
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control @error('name_tm') is-invalid @enderror" name="name_tm" id="name_tm"  value="{{ old('name_tm') }}" required autofocus>
+                        <input type="text" class="form-control @error('name_tm') is-invalid @enderror" name="name_tm" id="name_tm" value="{{ $obj->name_tm }}" required autofocus>
                         @error('name_tm')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -28,7 +29,7 @@
                         <label for="name_en" class="form-label fw-semibold">
                             <span class="text-primary">EN</span> @lang('app.name')
                         </label>
-                        <input type="text" class="form-control @error('name_en') is-invalid @enderror" name="name_en" id="name_en" value="{{ old('name_en') }}">
+                        <input type="text" class="form-control @error('name_en') is-invalid @enderror" name="name_en" id="name_en" value="{{ $obj->name_en }}">
                         @error('name_en')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -39,7 +40,7 @@
                             <span class="text-primary">TM</span> @lang('app.product')
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control @error('product_tm') is-invalid @enderror" name="product_tm" id="product_tm"  value="{{ old('product_tm') }}" required>
+                        <input type="text" class="form-control @error('product_tm') is-invalid @enderror" name="product_tm" id="product_tm" value="{{ $obj->product_tm }}" required>
                         @error('product_tm')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -49,7 +50,7 @@
                         <label for="product_en" class="form-label fw-semibold">
                             <span class="text-primary">EN</span> @lang('app.product')
                         </label>
-                        <input type="text" class="form-control @error('product_en') is-invalid @enderror" name="product_en" id="product_en" value="{{ old('product_en') }}">
+                        <input type="text" class="form-control @error('product_en') is-invalid @enderror" name="product_en" id="product_en" value="{{ $obj->product_en }}">
                         @error('product_en')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -60,21 +61,21 @@
                             @lang('app.sortOrder')
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="number" min="1" class="form-control @error('sort_order') is-invalid @enderror" name="sort_order" id="sort_order" value="1" required>
+                        <input type="number" min="1" class="form-control @error('sort_order') is-invalid @enderror" name="sort_order" id="sort_order" value="{{ $obj->sort_order }}" required>
                         @error('sort_order')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" name="home" id="home" value="1">
+                        <input class="form-check-input" type="checkbox" name="home" id="home" value="1" {{ $obj->home ? 'checked':'' }}>
                         <label class="form-check-label" for="home">
                             @lang('app.showOnHomePage')
                         </label>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">
-                        @lang('app.save')
+                        @lang('app.update')
                     </button>
                 </form>
             </div>

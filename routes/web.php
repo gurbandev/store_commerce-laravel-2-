@@ -7,7 +7,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,6 +71,9 @@ Route::controller(CategoryController::class)
             ->group(function () {
                 Route::get('/create', 'create')->name('create');
                 Route::post('', 'store')->name('store');
+                Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
+                Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
+                Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
             });
     });
 
@@ -83,22 +85,16 @@ Route::controller(BrandController::class)
     ->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('', 'store')->name('store');
-    });
-
-// AUTH
-Route::controller(SliderController::class)
-    ->middleware('auth')
-    ->prefix('/sliders/auth')
-    ->name('sliders.')
-    ->group(function () {
-        Route::get('/create', 'create')->name('create');
-        Route::post('', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit')->where('id', '[0-9-]+');
+        Route::put('/{id}', 'update')->name('update')->where('id', '[0-9-]+');
+        Route::delete('/{id}', 'delete')->name('delete')->where('id', '[0-9-]+');
     });
 
 Route::controller(ContactController::class)
     ->prefix('/contacts')
     ->name('contacts.')
     ->group(function () {
+        Route::get('', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('', 'store')->name('store');
     });

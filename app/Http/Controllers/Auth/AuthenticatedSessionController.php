@@ -24,7 +24,7 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->intended(RouteServiceProvider::HOME)
             ->with([
-                'success' => 'Login Success',
+                'success' => 'Successfully logged in!',
             ]);
     }
 
@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/')
             ->with([
-                'success' => 'Logout Success',
+                'success' => 'Successfully logged out!',
             ]);
     }
 }

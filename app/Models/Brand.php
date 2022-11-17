@@ -14,6 +14,14 @@ class Brand extends Model
     public $timestamps = false;
 
 
+    protected static function booted()
+    {
+        static::saving(function ($obj) {
+            $obj->slug = str()->slug($obj->name);
+        });
+    }
+
+
     public function products()
     {
         return $this->hasMany(Product::class)

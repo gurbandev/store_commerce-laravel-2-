@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,7 @@ class CategoryController extends Controller
             ->firstOrFail();
         $products = Product::where('category_id', $category->id)
             ->orderBy('random')
-            ->simplePaginate();
+            ->simplePaginate(20);
 
         return view('category.show')
             ->with([
@@ -33,12 +34,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name_tm' => 'required|string|max:255|unique:categories',
-            'name_en' => 'nullable|string|max:255',
-            'product_tm' => 'required|string|max:255',
-            'product_en' => 'nullable|string|max:255',
-            'home' => 'required|boolean',
-            'sort_order' => 'required|integer|min:1',
+            'name_tm' => ['required', 'string', 'max:255', Rule::unique('categories')],
+            'name_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')],
+            'product_tm' => ['required', 'string', 'max:255', Rule::unique('categories')],
+            'product_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')],
+            'home' => ['required', 'boolean'],
+            'sort_order' => ['required', 'integer', 'min:1'],
         ]);
 
         Category::create([
@@ -46,13 +47,51 @@ class CategoryController extends Controller
             'name_en' => $request->name_en ?: null,
             'product_tm' => $request->product_tm,
             'product_en' => $request->product_en ?: null,
-            'slug' => str()->slug($request->name_tm),
+            'home' => $request->home,
             'sort_order' => $request->sort_order,
         ]);
 
         return redirect()->back()
             ->with([
                 'success' => 'Category created!'
+            ]);
+    }
+
+
+    public function edit($id)
+    {
+        $obj = Category::findOrFail($id);
+
+        return view('category.edit')
+            ->with([
+                'obj' => $obj,
+            ]);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $obj = Category::findOrFail($id);
+        $request->validate([
+            'name_tm' => ['required', 'string', 'max:255', Rule::unique('categories')->ignore($obj->id)],
+            'name_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')->ignore($obj->id)],
+            'product_tm' => ['required', 'string', 'max:255', Rule::unique('categories')->ignore($obj->id)],
+            'product_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')->ignore($obj->id)],
+            'home' => ['required', 'boolean'],
+            'sort_order' => ['required', 'integer', 'min:1'],
+        ]);
+
+        $obj->name_tm = $request->name_tm;
+        $obj->name_en = $request->name_en ?: null;
+        $obj->product_tm = $request->product_tm;
+        $obj->product_en = $request->product_en ?: null;
+        $obj->home = $request->home;
+        $obj->sort_order = $request->sort_order;
+        $obj->update();
+
+        return redirect()->back()
+            ->with([
+                'success' => 'Category updated!'
             ]);
     }
 }

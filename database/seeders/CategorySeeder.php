@@ -33,7 +33,6 @@ class CategorySeeder extends Seeder
                 'name_en' => $objs[$i][1],
                 'product_tm' => $objs[$i][2],
                 'product_en' => $objs[$i][3],
-                'slug' => str($objs[$i][0])->slug(),
                 'home' => $objs[$i][4],
                 'sort_order' => $i + 1,
             ]);

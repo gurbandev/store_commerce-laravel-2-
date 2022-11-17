@@ -10,7 +10,8 @@
                     @lang('app.brand')
                 </div>
 
-                <form action="{{ route('brands.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('brands.update', $obj->id) }}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
 
                     <div class="mb-3">
@@ -18,7 +19,7 @@
                             @lang('app.name')
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name') }}" required autofocus>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ $obj->name }}" required autofocus>
                         @error('name')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -35,7 +36,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">
-                        @lang('app.save')
+                        @lang('app.update')
                     </button>
                 </form>
             </div>

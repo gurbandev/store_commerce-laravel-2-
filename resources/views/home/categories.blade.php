@@ -1,5 +1,5 @@
 <div class="{{ $loop->even ? 'bg-light':'bg-white' }}">
-    <div class="container-xl py-3">
+    <div class="container-xl py-4">
         <div class="d-flex justify-content-between align-items-center">
             <div class="fs-4 fw-semibold">
                 {{ $categoryProduct['category']->getName() }}
@@ -8,7 +8,7 @@
                 <i class="bi-arrow-right-circle-fill"></i>
             </a>
         </div>
-        <div class="splide py-3" role="group" id="splide-category-{{ $categoryProduct['category']->id }}">
+        <div class="splide py-4" role="group" id="splide-category-{{ $categoryProduct['category']->id }}">
             <div class="splide__track">
                 <ul class="splide__list">
                     @foreach($categoryProduct['products'] as $product)

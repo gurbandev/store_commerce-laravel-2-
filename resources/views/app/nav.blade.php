@@ -46,11 +46,6 @@
                                     @lang('app.brand')
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('sliders.create') }}">
-                                    @lang('app.slider')
-                                </a>
-                            </li>
                         </ul>
                     </li>
                 @endauth

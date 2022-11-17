@@ -28,7 +28,6 @@ class ProductFactory extends Factory
             'brand_id' => $brand->id,
             'name_tm' => $nameTm,
             'name_en' => $nameEn,
-            'slug' => str($nameTm)->slug(),
             'barcode' => fake()->unique()->isbn13(),
             'description' => fake()->text(rand(300, 500)),
             'price' => fake()->randomFloat($nbMaxDecimals = 1, $min = 100, $max = 1000),
@@ -53,7 +52,6 @@ class ProductFactory extends Factory
                 : Carbon::today()
                     ->startOfMonth()
                     ->toDateTimeString(),
-            'credit' => fake()->boolean(10),
             'viewed' => rand(20, 100),
             'sold' => rand(5, 10),
             'favorites' => rand(0, 30),

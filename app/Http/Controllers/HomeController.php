@@ -4,17 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::orderBy('sort_order')
-            ->orderBy('id', 'desc')
-            ->get();
-
         $categoryProducts = [];
         $categories = Category::where('home', 1)
             ->orderBy('sort_order')
@@ -32,7 +27,6 @@ class HomeController extends Controller
 
         return view('home.index')
             ->with([
-                'sliders' => $sliders,
                 'categoryProducts' => collect($categoryProducts),
             ]);
     }

@@ -32,7 +32,6 @@ class BrandSeeder extends Seeder
         foreach ($objs as $obj) {
             Brand::create([
                 'name' => $obj,
-                'slug' => str($obj)->slug(),
             ]);
         }
     }

@@ -12,8 +12,6 @@ return [
     'brands' => 'Brands',
     'product' => 'Product',
     'products' => 'Products',
-    'slider' => 'Slider',
-    'sliders' => 'Sliders',
     'contact' => 'Contact',
     'contacts' => 'Contacts',
     'attribute' => 'Attribute',

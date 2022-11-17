@@ -12,8 +12,6 @@ return [
     'brands' => 'Brendlar',
     'product' => 'Haryt',
     'products' => 'Harytlar',
-    'slider' => 'Slaýt',
-    'sliders' => 'Slaýtlar',
     'contact' => 'Kontakt',
     'contacts' => 'Kontaktlar',
     'attribute' => 'Aýratynlyk',
