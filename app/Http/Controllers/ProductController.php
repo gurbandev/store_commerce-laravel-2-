@@ -83,8 +83,8 @@ class ProductController extends Controller
             'brand_id' => $brand->id,
             'name_tm' => $request->name_tm,
             'name_en' => $request->name_en ?: null,
-            'full_name_tm' => $brand->name . ' ' . $category->name_tm . ' ' . $request->name_tm,
-            'full_name_en' => $brand->name . ' ' . ($category->name_en ?: $category->name_tm) . ' ' . ($request->name_en ?: $request->name_tm),
+            'full_name_tm' => $brand->name . ' ' . $category->product_tm . ' ' . $request->name_tm,
+            'full_name_en' => $brand->name . ' ' . ($category->product_en ?: $category->product_tm) . ' ' . ($request->name_en ?: $request->name_tm),
             'barcode' => $request->barcode ?: null,
             'description' => $request->description ?: null,
             'price' => round($request->price, 1),
@@ -155,8 +155,8 @@ class ProductController extends Controller
         $obj->brand_id = $brand->id;
         $obj->name_tm = $request->name_tm;
         $obj->name_en = $request->name_en ?: null;
-        $obj->full_name_tm = $brand->name . ' ' . $category->name_tm . ' ' . $request->name_tm;
-        $obj->full_name_en = $brand->name . ' ' . ($category->name_en ?: $category->name_tm) . ' ' . ($request->name_en ?: $request->name_tm);
+        $obj->full_name_tm = $brand->name . ' ' . $category->product_tm . ' ' . $request->name_tm;
+        $obj->full_name_en = $brand->name . ' ' . ($category->product_en ?: $category->product_tm) . ' ' . ($request->name_en ?: $request->name_tm);
         $obj->barcode = $request->barcode ?: null;
         $obj->description = $request->description ?: null;
         $obj->price = round($request->price, 1);
