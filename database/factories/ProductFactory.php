@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,20 @@ use Illuminate\Support\Facades\DB;
 class ProductFactory extends Factory
 {
     /**
+     * Configure the model factory.
+     *
+     * @return $this
+     */
+    public function configure()
+    {
+        return $this->afterMaking(function (Product $product) {
+            //
+        })->afterCreating(function (Product $product) {
+            $product->save();
+        });
+    }
+
+    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
@@ -21,7 +36,7 @@ class ProductFactory extends Factory
         $category = DB::table('categories')->inRandomOrder()->first();
         $brand = DB::table('brands')->inRandomOrder()->first();
         $nameTm = fake()->streetName();
-        $nameEn = fake()->streetName();
+        $nameEn = $nameTm;
         $fullNameTm = $brand->name . ' ' . $category->product_tm . ' ' . $nameTm;
         $fullNameEn = $brand->name . ' ' . $category->product_en . ' ' . $nameEn;
         $hasDiscount = fake()->boolean(20);

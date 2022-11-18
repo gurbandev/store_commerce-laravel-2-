@@ -90,6 +90,7 @@ class ProductController extends Controller
             'price' => round($request->price, 1),
             'stock' => $request->stock,
         ]);
+        $obj->save();
 
         if ($request->has('image')) {
             // generate name
