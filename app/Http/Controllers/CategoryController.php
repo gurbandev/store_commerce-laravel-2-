@@ -14,6 +14,7 @@ class CategoryController extends Controller
         $category = Category::where('slug', $slug)
             ->firstOrFail();
         $products = Product::where('category_id', $category->id)
+            ->with(['user'])
             ->orderBy('random')
             ->simplePaginate(20);
 

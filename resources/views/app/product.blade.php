@@ -29,6 +29,9 @@
                         {{ $product->getFullName() }}
                     </a>
                 </div>
+                <div class="text-secondary small">
+                    {{ $product->user->name }}
+                </div>
                 @if($product->isDiscount())
                     <div class="text-secondary">
                         {{ number_format($product->price, 2, '.', ' ') }}

@@ -33,6 +33,7 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $user = DB::table('users')->inRandomOrder()->first();
         $category = DB::table('categories')->inRandomOrder()->first();
         $brand = DB::table('brands')->inRandomOrder()->first();
         $nameTm = fake()->streetName();
@@ -41,6 +42,7 @@ class ProductFactory extends Factory
         $fullNameEn = $brand->name . ' ' . $category->product_en . ' ' . $nameEn;
         $hasDiscount = fake()->boolean(20);
         return [
+            'user_id' => $user->id,
             'category_id' => $category->id,
             'brand_id' => $brand->id,
             'name_tm' => $nameTm,

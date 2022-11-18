@@ -20,6 +20,7 @@ class HomeController extends Controller
             $categoryProducts[] = [
                 'category' => $category,
                 'products' => Product::where('category_id', $category->id)
+                    ->with(['user'])
                     ->inRandomOrder()
                     ->take(6)
                     ->get(),

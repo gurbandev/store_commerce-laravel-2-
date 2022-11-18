@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)
-            ->with(['category', 'brand'])
+            ->with(['user', 'category', 'brand'])
             ->firstOrFail();
 
         if (Cookie::has('p_v')) {
@@ -32,6 +32,7 @@ class ProductController extends Controller
 
         $category = Category::findOrFail($product->category_id);
         $products = Product::where('category_id', $category->id)
+            ->with(['user'])
             ->inRandomOrder()
             ->take(6)
             ->get();
@@ -79,6 +80,7 @@ class ProductController extends Controller
         $brand = Brand::findOrFail($request->brand);
 
         $obj = Product::create([
+            'user_id' => auth()->id(),
             'category_id' => $category->id,
             'brand_id' => $brand->id,
             'name_tm' => $request->name_tm,
@@ -119,6 +121,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         $obj = Product::findOrFail($id);
+        if (!$obj->checkOwner()) {
+            return abort(403);
+        }
+
         $categories = Category::orderBy('sort_order')
             ->orderBy('slug')
             ->get();
@@ -137,6 +143,10 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $obj = Product::findOrFail($id);
+        if (!$obj->checkOwner()) {
+            return abort(403);
+        }
+
         $request->validate([
             'category' => 'required|integer|min:1',
             'brand' => 'required|integer|min:1',
@@ -195,6 +205,10 @@ class ProductController extends Controller
     public function delete($id)
     {
         $obj = Product::findOrFail($id);
+        if (!$obj->checkOwner()) {
+            return abort(403);
+        }
+
         if ($obj->image) {
             Storage::delete('public/products/' . $obj->image);
             Storage::delete('public/products/sm/' . $obj->image);

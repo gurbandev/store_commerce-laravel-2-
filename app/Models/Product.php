@@ -26,10 +26,18 @@ class Product extends Model
 
     protected static function booted()
     {
-        static::saving(function ($obj) {
-            $obj->slug = str()->slug($obj->full_name_tm) . '-' . $obj->id;
+        static::creating(function ($obj) {
             $obj->credit = $obj->price >= 500 ? 1 : 0;
         });
+        static::saving(function ($obj) {
+            $obj->slug = str()->slug($obj->full_name_tm) . '-' . $obj->id;
+        });
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 
@@ -74,6 +82,16 @@ class Product extends Model
     public function getPrice()
     {
         return round($this->price * (1 - $this->getDiscountPercent() / 100), 1);
+    }
+
+
+    public function checkOwner()
+    {
+        if ($this->user_id == auth()->id()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
