@@ -28,12 +28,20 @@ class CategoryController extends Controller
 
     public function create()
     {
+        if (!auth()->user()->isAdmin()) {
+            return abort(403);
+        }
+
         return view('category.create');
     }
 
 
     public function store(Request $request)
     {
+        if (!auth()->user()->isAdmin()) {
+            return abort(403);
+        }
+
         $request->validate([
             'name_tm' => ['required', 'string', 'max:255', Rule::unique('categories')],
             'name_en' => ['nullable', 'string', 'max:255', Rule::unique('categories')],
@@ -61,6 +69,10 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        if (!auth()->user()->isAdmin()) {
+            return abort(403);
+        }
+
         $obj = Category::findOrFail($id);
 
         return view('category.edit')
@@ -72,6 +84,10 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!auth()->user()->isAdmin()) {
+            return abort(403);
+        }
+
         $obj = Category::findOrFail($id);
         $request->validate([
             'name_tm' => ['required', 'string', 'max:255', Rule::unique('categories')->ignore($obj->id)],

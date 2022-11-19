@@ -85,9 +85,9 @@ class Product extends Model
     }
 
 
-    public function checkOwner()
+    public function isOwner()
     {
-        if ($this->user_id == auth()->id()) {
+        if ($this->user_id == auth()->id() or auth()->user()->isAdmin()) {
             return true;
         } else {
             return false;

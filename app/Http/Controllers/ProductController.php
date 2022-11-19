@@ -121,7 +121,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $obj = Product::findOrFail($id);
-        if (!$obj->checkOwner()) {
+        if (!$obj->isOwner()) {
             return abort(403);
         }
 
@@ -143,7 +143,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $obj = Product::findOrFail($id);
-        if (!$obj->checkOwner()) {
+        if (!$obj->isOwner()) {
             return abort(403);
         }
 
@@ -205,7 +205,7 @@ class ProductController extends Controller
     public function delete($id)
     {
         $obj = Product::findOrFail($id);
-        if (!$obj->checkOwner()) {
+        if (!$obj->isOwner()) {
             return abort(403);
         }
 

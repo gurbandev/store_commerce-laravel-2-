@@ -11,12 +11,20 @@ class BrandController extends Controller
 {
     public function create()
     {
+        if (!auth()->user()->isAdmin()) {
+            return abort(403);
+        }
+
         return view('brand.create');
     }
 
 
     public function store(Request $request)
     {
+        if (!auth()->user()->isAdmin()) {
+            return abort(403);
+        }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('brands')],
             'image' => ['nullable', 'image', 'mimes:png', 'max:16', 'dimensions:width=120,height=120'],
@@ -42,6 +50,10 @@ class BrandController extends Controller
 
     public function edit($id)
     {
+        if (!auth()->user()->isAdmin()) {
+            return abort(403);
+        }
+
         $obj = Brand::findOrFail($id);
 
         return view('brand.edit')
@@ -53,6 +65,10 @@ class BrandController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!auth()->user()->isAdmin()) {
+            return abort(403);
+        }
+
         $obj = Brand::findOrFail($id);
         $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('brands')->ignore($obj->id)],

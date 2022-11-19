@@ -28,4 +28,14 @@ class User extends Authenticatable
         return $this->hasMany(Product::class)
             ->orderBy('id', 'desc');
     }
+
+
+    public function isAdmin()
+    {
+        if ($this->is_admin) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

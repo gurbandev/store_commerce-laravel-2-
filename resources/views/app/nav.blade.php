@@ -36,16 +36,20 @@
                                     @lang('app.product')
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('categories.create') }}">
-                                    @lang('app.category')
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('brands.create') }}">
-                                    @lang('app.brand')
-                                </a>
-                            </li>
+                            @if(auth()->user()->isAdmin())
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('categories.create') }}">
+                                        @lang('app.category')
+                                    </a>
+                                </li>
+                            @endif
+                            @if(auth()->user()->isAdmin())
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('brands.create') }}">
+                                        @lang('app.brand')
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                 @endauth

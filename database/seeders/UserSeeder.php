@@ -19,16 +19,19 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'username' => 'admin',
             'password' => bcrypt('password'),
+            'is_admin' => 1,
         ]);
         User::create([
             'name' => 'Emir',
             'username' => 'emir',
             'password' => bcrypt('password'),
+            'is_admin' => 0,
         ]);
         User::create([
             'name' => 'Batyr',
             'username' => 'batyr',
             'password' => bcrypt('password'),
+            'is_admin' => 0,
         ]);
     }
 }
