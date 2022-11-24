@@ -156,7 +156,7 @@ class ProductController extends Controller
             'description' => 'nullable|string|max:1000',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image' => 'nullable|image|mimes:jpg,jpeg|max:128|dimensions:width=1000,height=1000',
+            'image' => 'nullable|image|mimes:jpg,jpeg|max:128',
         ]);
 
         $category = Category::findOrFail($request->category);

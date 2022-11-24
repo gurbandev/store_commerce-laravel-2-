@@ -30,7 +30,7 @@
                     </a>
                 </div>
                 <div class="fw-semibold text-secondary small">
-                    <i class="bi-person-fill"></i>  {{ $product->user->name }}
+                    {{--<i class="bi-person-fill"></i>  {{ $product->user->name }}--}}
                 </div>
                 @if($product->isDiscount())
                     <div class="text-secondary">
